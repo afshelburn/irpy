@@ -78,7 +78,8 @@ class GamePlayerHandler:
     self.id1Pin = id1Pin
     self.id2Pin = id2Pin
     self.readID()
-
+    if self.playerID & 1 == 0:
+        self.teamMask = self.teamMask << 1
     logging.info("Constructor Finished")
 
   def discover(self, serverName, serverIP):
