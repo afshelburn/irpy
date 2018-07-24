@@ -164,7 +164,7 @@ class GameServerHandler:
       print str(gameMode)
       print str(playerID)
       plyr = self.s16(playerID)
-      client.startGame(self.hostName, gameMode, plyr, msk)
+      client.startGame(self.hostName, gameMode, plyr, 0)
       logging.info("Command sent")
       transport.close()
       logging.info("Done")
