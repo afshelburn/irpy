@@ -3,6 +3,7 @@ sys.path.append('.')
  
 import socket
 import logging
+import os
 
 from Services import GameService
 from Services import GamePlayer
@@ -215,12 +216,16 @@ class GameServerHandler:
     return (transport, client)
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='/home/pi/Server.log',level=logging.DEBUG)
+    homedir = os.environ['HOME']
+    logging.basicConfig(filename=homedir + '/Server.log',level=logging.DEBUG)
     logging.getLogger().addHandler(logging.StreamHandler())
     logging.info("Main server method")
     handler = GameServerHandler()
     handler.port = 9090
     processor = GameService.Processor(handler)
+    if len(sys.argv) > 1:
+        handler.hostName = sys.argv[1]
+    logging.info("My hostname is " + handler.hostName)
     transport = TSocket.TServerSocket(handler.hostName, handler.port)
     tfactory = TTransport.TBufferedTransportFactory()
     pfactory = TBinaryProtocol.TBinaryProtocolFactory()

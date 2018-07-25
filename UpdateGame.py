@@ -11,11 +11,11 @@ from thrift.server import TServer
  
 import socket
 
-ipTable = {'voyager':'192.168.0.34', 'viking':'192.168.0.42'}
+#ipTable = {'voyager':'192.168.0.34', 'viking':'192.168.0.42'}
 
 if __name__ == "__main__":
     ip = sys.argv[1]
-    ip = ipTable[ip]
+    #ip = ipTable[ip]
     port = 9090
     source = int(sys.argv[2])
     target = int(sys.argv[3])
