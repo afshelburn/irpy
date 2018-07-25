@@ -41,6 +41,7 @@ class Game:
     self.hits = {}
     self.server = server
     for player in self.players:
+      logging.info("Resetting player " + str(player))
       self.kills[player] = 0
       self.deaths[player] = 0
       self.shots[player] = 0
@@ -48,6 +49,7 @@ class Game:
 
   def update(self, source, target, action, data):
     logging.info("Updating stats")
+    loggint.info(str(source) + ", " + str(target) + ", " + str(action) + ", " + str(data))
     if action == ACTION_HIT:
       self.hits[source] += 1
     if action == ACTION_KILL:
@@ -65,6 +67,7 @@ class Game:
   def reset(self):
     logging.info("reset")
     for player in self.players:
+      logging.info("Resetting player " + str(player))
       self.kills[player] = 0
       self.deaths[player] = 0
       self.shots[player] = 0
