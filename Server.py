@@ -111,8 +111,9 @@ class DeathMatch(Game):
     if action == ACTION_KILL:
       logging.info("reviving player " + str(target))
       key = int(target)
-      logging.info("player address = " + self.server.players[key])
-      transport,client = self.server.getPlayerClient(self.server.players[target],28900)
+      playerAddress = ipTable[self.server.players[key]]
+      logging.info("player address = " + playerAddress)
+      transport,client = self.server.getPlayerClient(playerAddress,28900)
       transport.open()
       client.revive()
       transport.close()
