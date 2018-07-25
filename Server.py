@@ -49,7 +49,7 @@ class Game:
 
   def update(self, source, target, action, data):
     logging.info("Updating stats")
-    loggint.info(str(source) + ", " + str(target) + ", " + str(action) + ", " + str(data))
+    logging.info(str(source) + ", " + str(target) + ", " + str(action) + ", " + str(data))
     if action == ACTION_HIT:
       self.hits[source] += 1
     if action == ACTION_KILL:
