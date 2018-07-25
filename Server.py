@@ -125,6 +125,7 @@ class GameServerHandler:
   def __init__(self):
     self.log = {}
     self.players = {} 
+    self.updatePlayerList()
     self.hostName = MyIP()
     self.port = 9090
     dm5 = DeathMatch(1, self.players.keys(), self, 5)
