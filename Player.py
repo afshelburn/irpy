@@ -149,6 +149,7 @@ class GamePlayerHandler:
       self.irSend.send_code(binc)
       logging.info("ir message sent")
       self.shotCount += 1
+      os.system('aplay /home/pi/irpy/fire.wav')
     else:
       logging.info("No fire, health = 0!")
     logging.info("===================================")
