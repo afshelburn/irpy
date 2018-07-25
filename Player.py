@@ -140,7 +140,7 @@ class GamePlayerHandler:
     logging.info("Weapon is    " + str(self.weapon))
     logging.info("Team Mask is " + str(self.teamMask))
     logging.info("Player id is " +str(self.playerID))
-    if self.health >= 0:
+    if self.health > 0:
       code = 0xFFFFFFFF & ((self.weapon << 16) | self.playerID)
       #code = 0xF0F0F0F0
       binc = format(code,'#034b')[2:] + "1"
