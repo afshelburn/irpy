@@ -65,7 +65,7 @@ class GamePlayerHandler:
     self.pi.set_pull_up_down(id1Pin, pigpio.PUD_UP)
     self.pi.set_pull_up_down(id2Pin, pigpio.PUD_UP)
     
-    self.pi.set_mode(19, pigpio.ALT5)
+    #self.pi.set_mode(19, pigpio.ALT5)
 
     self.irSend = Pyslinger.Pyslinger(self.pi, irSendPin)
     self.irRead = ReadPin.ReadPin(self.pi)
@@ -144,22 +144,18 @@ class GamePlayerHandler:
     logging.info("Weapon is    " + str(self.weapon))
     logging.info("Team Mask is " + str(self.teamMask))
     logging.info("Player id is " +str(self.playerID))
-    if self.health >= 0:
+    if self.health > 0:
       code = 0xFFFFFFFF & ((self.weapon << 16) | self.playerID)
       #code = 0xF0F0F0F0
       binc = format(code,'#034b')[2:] + "1"
       logging.info( binc )
       #irSender = Pyslinger.Pyslinger(self.irSendPin)
-      self.irSend.pigpio.set_mode(19, pigpio.OUTPUT)
-      self.irSend.pigpio.write(19, 0)
+      #self.irSend.pigpio.set_mode(19, pigpio.OUTPUT)
+      #self.irSend.pigpio.write(19, 0)
       self.irSend.send_code(binc)
       logging.info("ir message sent")
       self.shotCount += 1
-      #foo = 1
-      #while self.irSend.pigpio.wave_tx_busy():
-      #  foo = foo + 1
-      #logging.info(str(foo))
-      self.irSend.pigpio.set_mode(19, pigpio.ALT5)
+      #self.irSend.pigpio.set_mode(19, pigpio.ALT5)
       logging.info("Playing fire sound")
       os.system('aplay /home/pi/irpy/fire.wav')
     else:
